@@ -4,7 +4,10 @@ using UnityEngine;
 
 public class SpawnManager : MonoBehaviour
 {
+    //PlayerController playerController;
+
     [SerializeField] GameObject enemyPrefab;
+    [SerializeField] GameObject powerUpPrefab;
 
     public int enemyCount;
     public int waveNumber = 1;
@@ -12,6 +15,8 @@ public class SpawnManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        //playerController = GameObject.Find("Player").GetComponent<PlayerController>();
+        //InvokeRepeating("SpawnPowerUpWave", 2, 6);
         SpawnEnemyWave(3);
     }
 
@@ -24,6 +29,7 @@ public class SpawnManager : MonoBehaviour
         {
             waveNumber++;
             SpawnEnemyWave(waveNumber);
+            Instantiate(powerUpPrefab, GenerateSpawnPos(), powerUpPrefab.transform.rotation);
         }
     }
 
@@ -43,4 +49,13 @@ public class SpawnManager : MonoBehaviour
             Instantiate(enemyPrefab, GenerateSpawnPos(), enemyPrefab.transform.rotation);
         }
     }
+
+    /*void SpawnPowerUpWave()
+    {
+        if (playerController.hasPowerUp == false)
+        {
+            Instantiate(powerUpPrefab, GenerateSpawnPos(), powerUpPrefab.transform.rotation);
+        }
+      
+    }*/
 }
