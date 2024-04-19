@@ -7,6 +7,7 @@ public class SpawnManager : MonoBehaviour
     [SerializeField] GameObject enemyPrefab;
 
     public int enemyCount;
+    public int waveNumber = 1;
 
     // Start is called before the first frame update
     void Start()
@@ -21,7 +22,8 @@ public class SpawnManager : MonoBehaviour
 
         if (enemyCount == 0)
         {
-            SpawnEnemyWave(1);
+            waveNumber++;
+            SpawnEnemyWave(waveNumber);
         }
     }
 
