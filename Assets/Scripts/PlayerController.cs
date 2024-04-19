@@ -5,8 +5,8 @@ using UnityEngine;
 public class PlayerController : MonoBehaviour
 {
     Rigidbody playerRb;
+    GameObject focalPoint;
 
-    [SerializeField] GameObject focalPoint;
     [SerializeField] float speed;
 
     // Start is called before the first frame update
