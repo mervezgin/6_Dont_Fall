@@ -7,6 +7,8 @@ public class PlayerController : MonoBehaviour
     Rigidbody playerRb;
     GameObject focalPoint;
 
+    [SerializeField] GameObject powerUpIndicator;
+
     [SerializeField] float speed;
 
     public bool hasPowerUp = false;
@@ -18,6 +20,7 @@ public class PlayerController : MonoBehaviour
     {
         playerRb = GetComponent<Rigidbody>();
         focalPoint = GameObject.Find("FocalPoint");
+        powerUpIndicator.gameObject.SetActive(false);
     }
 
     // Update is called once per frame
@@ -26,6 +29,7 @@ public class PlayerController : MonoBehaviour
         float verticalInput = Input.GetAxis("Vertical");
 
         playerRb.AddForce(focalPoint.transform.forward * speed * verticalInput);
+        powerUpIndicator.transform.position = transform.position + new Vector3(0, -0.5f, 0);
     }
 
     void OnTriggerEnter(Collider other)
@@ -35,6 +39,7 @@ public class PlayerController : MonoBehaviour
             Destroy(other.gameObject);
             StartCoroutine(PowerUpCountDownRoutine());
             hasPowerUp = true;
+            powerUpIndicator.gameObject.SetActive(true);
         }
     }
 
@@ -54,5 +59,6 @@ public class PlayerController : MonoBehaviour
     {
         yield return new WaitForSeconds(7);
         hasPowerUp = false;
+        powerUpIndicator.gameObject.SetActive(false);
     }
 }

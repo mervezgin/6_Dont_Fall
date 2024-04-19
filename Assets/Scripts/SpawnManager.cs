@@ -9,8 +9,7 @@ public class SpawnManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        
-        Instantiate(enemyPrefab, GenerateSpawnPos(), enemyPrefab.transform.rotation);  
+        SpawnEnemyWave(3);
     }
 
     // Update is called once per frame
@@ -26,5 +25,13 @@ public class SpawnManager : MonoBehaviour
         float spawnPosZ = Random.Range(-9, 9);
         Vector3 randomSpawnPos = new Vector3(spawnPosX, posY, spawnPosZ);
         return randomSpawnPos;
+    }
+
+    void SpawnEnemyWave(int enemiesToSpawn)
+    {
+        for (int i = 0; i < enemiesToSpawn; i++)
+        {
+            Instantiate(enemyPrefab, GenerateSpawnPos(), enemyPrefab.transform.rotation);
+        }
     }
 }
